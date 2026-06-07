@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "水果管理",
+  "usingComponents": {
+    "van-empty": "/vant/empty/index"
+  }
+}
+

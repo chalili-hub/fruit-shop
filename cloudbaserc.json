@@ -1,0 +1,89 @@
+{
+  "envId": "cloud1-d7gjgt9tnf380596c",
+  "functionRoot": "./cloudfunctions",
+  "functions": [
+    {
+      "name": "login",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    },
+    {
+      "name": "getCategory",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    },
+    {
+      "name": "doBuy",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    },
+    {
+      "name": "pay",
+      "config": {
+        "timeout": 10,
+        "memory": 256
+      }
+    },
+    {
+      "name": "pay_success",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    },
+    {
+      "name": "getUserList",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    },
+    {
+      "name": "updateUser",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    },
+    {
+      "name": "getPhoneNumber",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    },
+    {
+      "name": "get_code",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    },
+    {
+      "name": "printManage",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    },
+    {
+      "name": "printBack",
+      "config": {
+        "timeout": 5,
+        "memory": 256
+      }
+    }
+  ],
+  "server": {
+    "port": 8080,
+    "envVariables": {
+      "NODE_ENV": "production"
+    }
+  }
+}

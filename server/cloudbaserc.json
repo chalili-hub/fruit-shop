@@ -1,0 +1,23 @@
+{
+  "envId": "cloud1-d7gjgt9tnf380596c",
+  "version": "2.0",
+  "server": {
+    "port": 3000
+  },
+  "deploy": {
+    "cloudRun": {
+      "serviceName": "orderfood-server",
+      "dockerfilePath": "Dockerfile",
+      "buildDir": ".",
+      "serviceConfig": {
+        "minNum": 1,
+        "maxNum": 2,
+        "cpu": 1,
+        "mem": 256,
+        "envVariables": {
+          "NODE_ENV": "production"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<!--pages/myhome/address/address.wxml-->
+<view class="register-container">
+  <view class="form-item">
+    <text class="form-label">大学：</text>
+    <view class="form-control">
+      <picker mode="selector" range="{{universityOptions}}" value="{{universityIndex}}" bindchange="universityChange">
+        <view class="picker-text">{{universityOptions[universityIndex]}}</view>
+      </picker>
+    </view>
+  </view>
+  
+  <view class="form-item">
+    <text class="form-label">宿舍位置：</text>
+    <view class="form-control">
+      <picker mode="selector" range="{{dormOptions}}" value="{{dormIndex}}" bindchange="dormChange">
+        <view class="picker-text">{{dormOptions[dormIndex]}}</view>
+      </picker>
+    </view>
+  </view>
+  
+  <view class="action-section">
+    <button class="submit-btn" bindtap="submit">提交登记</button>
+  </view>
+</view>

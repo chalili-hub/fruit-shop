@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "买果",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "avatar-nickname-modal": "/components/avatarNicknameModal/avatarNicknameModal",
+    "van-notice-bar": "/vant/notice-bar/index",
+    "van-empty": "/vant/empty/index"
+  }
+}
+
+

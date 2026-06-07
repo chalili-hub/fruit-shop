@@ -1,0 +1,119 @@
+<!--pages/admin/delivery/delivery.wxml-->
+<view class="page">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">配送服务管理</text>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="add-btn" bindtap="showAddModal">
+    <text>📍 + 新增配送服务</text>
+  </view>
+
+  <!-- 配送服务列表 -->
+  <view class="delivery-list">
+    <view class="delivery-item" wx:for="{{deliveryServices}}" wx:key="_id">
+      <view class="item-content">
+        <view class="delivery-image" bindtap="previewImage" data-url="{{item.image}}">
+          <image src="{{item.image}}" mode="aspectFill"></image>
+        </view>
+        <view class="delivery-info">
+          <view class="delivery-title">{{item.title}}</view>
+          <view class="delivery-description">{{item.description}}</view>
+        </view>
+        <view class="item-actions">
+          <view class="action-btn edit" bindtap="showEditModal" data-service="{{item}}">✏️ 编辑</view>
+          <view class="action-btn delete" bindtap="deleteDeliveryService" data-service="{{item}}">🗑️ 删除</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{deliveryServices.length === 0 && !loading}}" class="empty-state">
+      <text class="empty-icon">📦</text>
+      <text class="empty-text">暂无配送服务，点击上方按钮添加</text>
+    </view>
+    <view wx:if="{{loading}}" class="loading-state">
+      <text class="loading-text">加载中...</text>
+    </view>
+  </view>
+
+  <!-- 添加弹窗 -->
+  <view class="modal-mask" wx:if="{{showAddModal}}" catchtap="closeModal">
+    <view class="modal-dialog" catchtap="stopPropagation">
+      <view class="modal-title">新增配送服务</view>
+      <view class="modal-content">
+        <view class="form-item">
+          <view class="form-label">标题</view>
+          <input 
+            class="form-input" 
+            placeholder="请输入配送服务标题" 
+            value="{{currentService.title}}"
+            bindinput="onTitleInput"
+          />
+        </view>
+        <view class="form-item">
+          <view class="form-label">描述</view>
+          <input 
+            class="form-input" 
+            placeholder="请输入配送服务描述" 
+            value="{{currentService.description}}"
+            bindinput="onDescriptionInput"
+          />
+        </view>
+        <view class="form-item">
+          <view class="form-label">图片</view>
+          <view class="image-upload" bindtap="chooseImage">
+            <image wx:if="{{currentService.image}}" src="{{currentService.image}}" mode="aspectFill"></image>
+            <view wx:else class="upload-placeholder">
+              <text>📷 点击上传图片</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="modal-btn cancel" bindtap="closeModal">取消</view>
+        <view class="modal-btn confirm" bindtap="saveDeliveryService">确认</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 编辑弹窗 -->
+  <view class="modal-mask" wx:if="{{showEditModal}}" catchtap="closeModal">
+    <view class="modal-dialog" catchtap="stopPropagation">
+      <view class="modal-title">编辑配送服务</view>
+      <view class="modal-content">
+        <view class="form-item">
+          <view class="form-label">标题</view>
+          <input 
+            class="form-input" 
+            placeholder="请输入配送服务标题" 
+            value="{{currentService.title}}"
+            bindinput="onTitleInput"
+          />
+        </view>
+        <view class="form-item">
+          <view class="form-label">描述</view>
+          <input 
+            class="form-input" 
+            placeholder="请输入配送服务描述" 
+            value="{{currentService.description}}"
+            bindinput="onDescriptionInput"
+          />
+        </view>
+        <view class="form-item">
+          <view class="form-label">图片</view>
+          <view class="image-upload" bindtap="chooseImage">
+            <image wx:if="{{currentService.image}}" src="{{currentService.image}}" mode="aspectFill"></image>
+            <view wx:else class="upload-placeholder">
+              <text>📷 点击上传图片</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="modal-btn cancel" bindtap="closeModal">取消</view>
+        <view class="modal-btn confirm" bindtap="saveDeliveryService">确认</view>
+      </view>
+    </view>
+  </view>
+</view>

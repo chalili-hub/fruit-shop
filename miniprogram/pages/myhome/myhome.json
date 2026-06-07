@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "大深夜之可爱的我",
+  "usingComponents": {
+    "avatar-nickname-modal": "/components/avatarNicknameModal/avatarNicknameModal"
+  }
+}

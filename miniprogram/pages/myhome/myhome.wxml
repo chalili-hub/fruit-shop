@@ -1,0 +1,170 @@
+<!--pages/myhome/myhome.wxml-->
+<view class="page">
+  <!-- 用户头部（统一布局） -->
+  <view class="user-header">
+    <view class="user-main">
+      <view class="user-avatar">
+        <image src="{{userInfo && userInfo.avatarUrl ? userInfo.avatarUrl : '/images/tabBar/me.png'}}" mode="aspectFill"></image>
+      </view>
+      <view class="user-detail">
+        <view class="user-name" wx:if="{{userInfo.nickName}}">
+          {{userInfo && userInfo.nickName ? userInfo.nickName : '餐饮会员'}}
+        </view>
+        <view class="user-phone" wx:if="{{userInfo && userInfo.phoneNumber}}">
+          {{userInfo.phoneNumber}}
+        </view>
+        <view class="user-phone login-prompt-text" wx:if="{{!userInfo}}">
+          请先完善个人信息
+        </view>
+        <view class="user-phone login-prompt-text" wx:else>
+        用户已授权登录
+        </view>
+        <button 
+          class="login-btn-inline" 
+          wx:if="{{!userInfo || !userInfo.phoneNumber}}"
+          bindtap="showAuthModal">
+          点击完善个人信息
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 会员余额卡片 -->
+  <view class="balance-card">
+    <view class="balance-item">
+      <view class="balance-icon">💰</view>
+      <view class="balance-content">
+        <view class="balance-label">账户余额</view>
+        <view class="balance-amount">¥{{userInfo.balance || 0}}</view>
+      </view>
+    </view>
+    <view class="balance-item" >
+      <view class="balance-icon">🎁</view>
+      <view class="balance-content">
+        <view class="balance-label">免单次数</view>
+        <view class="balance-amount">{{miandanCount}}次</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 充值按钮 -->
+  <view class="action-card">
+    <view class="action-btn-large" bindtap="goToRecharge">
+      <text>💳 立即充值</text>
+    </view>
+  </view>
+
+  <!-- 地址登记入口 -->
+  <view class="menu-section">
+    <view class="menu-item" bindtap="goToAddress">
+      <view class="menu-icon">📍</view>
+      <view class="menu-text">地址登记</view>
+      <view class="menu-arrow">＞</view>
+    </view>
+  </view>
+
+  <!-- 邀请码入口 -->
+  <view class="menu-section">
+    <view class="menu-item" bindtap="showInviteModal">
+      <view class="menu-icon">🔗</view>
+      <view class="menu-text">我的邀请码</view>
+      <view class="menu-arrow">＞</view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <!-- <view class="menu-section">
+    <van-grid column-num="2" border="{{false}}" custom-class="service-grid">
+      <van-grid-item custom-class="service-item">
+        <button class="service-btn" open-type="contact">
+          <view class="service-icon">💬</view>
+          <view class="service-text">联系客服</view>
+        </button>
+      </van-grid-item>
+      <van-grid-item custom-class="service-item">
+        <button class="service-btn" open-type="contact">
+          <view class="service-icon">📞</view>
+          <view class="service-text">在线咨询</view>
+        </button>
+      </van-grid-item>
+    </van-grid>
+  </view> -->
+
+  <!-- 管理员入口触发区域（隐藏在右下角） -->
+  <view class="admin-trigger" bindtap="onAdminTrigger"></view>
+
+  <!-- 密码输入弹窗 -->
+  <view class="modal-mask" wx:if="{{showPasswordModal}}" catchtap="noop">
+    <view class="modal-dialog" catchtap="stopPropagation">
+      <view class="modal-title">{{isFirstTime ? '设置管理员密码' : '管理员登录'}}</view>
+      <view class="modal-content">
+        <input 
+          class="password-input" 
+          type="password" 
+          placeholder="{{isFirstTime ? '请设置管理员密码（至少6位）' : '请输入管理员密码'}}" 
+          value="{{adminPassword}}"
+          bindinput="onPasswordInput"
+        />
+        <view class="password-hint" wx:if="{{isFirstTime}}">
+          首次设置，请设置一个安全的密码
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="modal-btn cancel" bindtap="closePasswordModal">取消</view>
+        <view class="modal-btn confirm" bindtap="verifyPassword">{{isFirstTime ? '设置' : '登录'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户信息授权组件 -->
+  <avatar-nickname-modal 
+    showAvaModal="{{showAuthModal}}" 
+    bind:saved="onUserInfoSaved">
+  </avatar-nickname-modal>
+
+  <!-- 邀请码弹窗 -->
+  <view class="modal-mask" wx:if="{{showInviteModal}}" catchtap="closeInviteModal">
+    <view class="modal-dialog invite-modal" catchtap="stopPropagation">
+      <view class="modal-title">我的专属邀请码</view>
+      <view class="modal-content">
+        <view class="invite-code-box">
+          <text class="invite-code">{{inviteCode || '生成中...'}}</text>
+        </view>
+        <view class="invite-count">
+          <text>👥 已成功邀请：{{inviteCount || 0}}人</text>
+        </view>
+        <view class="invite-tips">
+          <text>分享邀请码给好友，好友输入即可绑定</text>
+        </view>
+        
+        <!-- 输入邀请码区域 -->
+        <view class="invite-input-section" wx:if="{{!hasInvited}}">
+          <view class="invite-input-title">📮 输入好友邀请码</view>
+          <input 
+            class="invite-input" 
+            type="number" 
+            placeholder="请输入7位数字邀请码" 
+            value="{{inputInviteCode}}" 
+            bindinput="onInputInviteCode"
+            maxlength="7"
+          />
+          <view class="invite-input-btn" bindtap="submitInviteCode">
+            <text>确认绑定</text>
+          </view>
+        </view>
+        <view class="invite-binded" wx:else>
+          <text>✓ 您已成功绑定邀请关系</text>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="modal-btn cancel" bindtap="closeInviteModal">关闭</view>
+        <view class="modal-btn confirm" bindtap="copyInviteCode">复制邀请码</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 版本号显示 -->
+  <view class="version-info">
+    <text class="version-text">版本号：{{version}}</text>
+  </view>
+</view>

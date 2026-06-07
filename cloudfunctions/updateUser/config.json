@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "openapi": [
+      "wx.cloud.callFunction"
+    ],
+    "database": {
+      "user": {
+        "read": true,
+        "write": true
+      }
+    }
+  }
+}

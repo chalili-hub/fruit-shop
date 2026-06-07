@@ -1,0 +1,51 @@
+/* pages/myhome/address/address.wxss */
+.register-container {
+  padding: 30rpx;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+}
+
+.form-label {
+  width: 120rpx;
+  font-size: 28rpx;
+}
+
+.form-control {
+  flex: 1;
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.action-section {
+  margin-top: 50rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+}
+
+/* 适配绿色主题 */
+.submit-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+  border: none;
+  border-radius: 50rpx;
+  padding: 25rpx 0;
+  font-weight: bold;
+}
