@@ -38,7 +38,7 @@
       <div align="center">管理员页面</div>
    </td>
    <td width="25%">
-      <img src="./miniprogram/images/githubImg/hy.png" alt="会员页面" />
+      <img src="./miniprogram/images/githubImg/hy.jpg" alt="会员页面" />
       <br />
       <div align="center">会员页面</div>
     </td>
