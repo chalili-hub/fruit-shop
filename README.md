@@ -64,23 +64,7 @@
       <br />
       <div align="center">编辑菜品页面</div>
     </td>
-    <td width="25%">
-      <img src="./miniprogram/images/githubImg/sczm.jpg" alt="一键生成桌码" />
-      <br />
-      <div align="center">一键生成桌码</div>
-    </td>
-  </tr>
-   <td width="25%">
-      <img src="./miniprogram/images/githubImg/xp.jpg" alt="小票示例" />
-      <br />
-      <div align="center">小票示例</div>
-    </td>
-       <td width="25%">
-      <img src="./miniprogram/images/githubImg/jsdd.jpg" alt="结算订单页面" />
-      <br />
-      <div align="center">结算订单页面</div>
-    </td>
-  </tr>
+   
 </table>
 
 
